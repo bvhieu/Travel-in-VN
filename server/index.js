@@ -23,3 +23,8 @@ const startServer = async () => {
 };
 
 startServer();
+
+app.post("/register", (req, res) => {
+  const { name, email, password } = req.body;
+  
+})
