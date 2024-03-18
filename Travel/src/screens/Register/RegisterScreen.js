@@ -15,11 +15,43 @@ import Logo from "../../components/Logo";
 
 const RegisterScreen = () => {
   const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  // const [avatar, setAvatar] = useState("");
+  const [address, setAddress] = useState("");
   const navigation = useNavigation();
 
-  const handleRegister = () => {};
+  const handleRegister = () => {
+    const user = {
+      username: username,
+      email: email,
+      password: password,
+      address: address,
+    };
+
+    // send a POST  request to the backend API to register the user
+    axios
+      .post("http://10.0.2.2:8000/api/v1/auth/register", user)
+      .then((response) => {
+        console.log(response);
+        Alert.alert(
+          "Registration successful",
+          "You have been registered Successfully"
+        );
+        setUsername("");
+        setEmail("");
+        setPassword("");
+        setAddress("");
+      })
+      .catch((error) => {
+        Alert.alert(
+          "Registration Error",
+          "An error occurred while registering"
+        );
+        console.log("registration failed", error);
+      });
+  };
+
   return (
     <View
       style={{
@@ -43,8 +75,8 @@ const RegisterScreen = () => {
         <View style={{ marginTop: 30 }}>
           <View style={{ width: 300, marginTop: 10 }}>
             <TextInput
-              value={name}
-              onChangeText={(text) => setName(text)}
+              value={username}
+              onChangeText={(text) => setUsername(text)}
               mode="outlined"
               label="Enter your name"
             />
@@ -66,6 +98,15 @@ const RegisterScreen = () => {
               secureTextEntry={true}
               mode="outlined"
               label="Password"
+            />
+          </View>
+
+          <View style={{ width: 300, marginTop: 10 }}>
+            <TextInput
+              value={address}
+              onChangeText={(text) => setAddress(text)}
+              mode="outlined"
+              label="Address"
             />
           </View>
 

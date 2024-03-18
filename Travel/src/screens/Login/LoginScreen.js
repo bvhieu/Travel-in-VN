@@ -9,6 +9,8 @@ import {
 import { TextInput } from "react-native-paper";
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import Logo from "../../components/Logo";
 
 const LoginScreen = () => {
@@ -19,7 +21,24 @@ const LoginScreen = () => {
   useEffect(() => {}, []);
 
   const handleLogin = () => {
-    navigation.replace("Home");
+    const user = {
+      email: email,
+      password: password,
+    };
+
+    axios
+      .post("http://10.0.2.2:8000/api/v1/auth/login", user)
+      .then((response) => {
+        console.log(response);
+        const token = response.data.token;
+        AsyncStorage.setItem("authToken", token);
+
+        navigation.replace("Home");
+      })
+      .catch((error) => {
+        Alert.alert("Login Error", "Invalid email or password");
+        console.log("Login Error", error);
+      });
   };
 
   return (

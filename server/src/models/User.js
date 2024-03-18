@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
   },
   avatar: {
     type: String,
-    required: [true, "Avatar is required"],
+    required: [false, "Avatar is required"],
   },
   address: {
     type: String,
