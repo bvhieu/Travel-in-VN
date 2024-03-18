@@ -21,24 +21,24 @@ const LoginScreen = () => {
   useEffect(() => {}, []);
 
   const handleLogin = () => {
-    const user = {
-      email: email,
-      password: password,
-    };
+    // const user = {
+    //   email: email,
+    //   password: password,
+    // };
 
-    axios
-      .post("http://10.0.2.2:8000/api/v1/auth/login", user)
-      .then((response) => {
-        console.log(response);
-        const token = response.data.token;
-        AsyncStorage.setItem("authToken", token);
+    // axios
+    //   .post("http://10.0.2.2:8000/api/v1/auth/login", user)
+    //   .then((response) => {
+    //     console.log(response);
+    //     const token = response.data.token;
+    //     AsyncStorage.setItem("authToken", token);
 
-        navigation.replace("Home");
-      })
-      .catch((error) => {
-        Alert.alert("Login Error", "Invalid email or password");
-        console.log("Login Error", error);
-      });
+    navigation.replace("Home");
+    // })
+    // .catch((error) => {
+    //   Alert.alert("Login Error", "Invalid email or password");
+    //   console.log("Login Error", error);
+    // });
   };
 
   return (

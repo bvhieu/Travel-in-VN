@@ -2,6 +2,9 @@ import { StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+// import { createAppContainer } from "react-navigation";
+// import { createBottomTabNavigator } from "react-navigation-tabs";
+
 import LoginScreen from "../screens/Login/LoginScreen";
 import RegisterScreen from "../screens/Register/RegisterScreen";
 import HomeScreen from "../screens/Home/HomeScreen";
